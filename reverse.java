@@ -1,35 +1,33 @@
-package Arrays;
-
-import java.util.Scanner;
-
+package ja;
+import java.lang.reflect.Array;
+import java.util.*;
 public class reverse {
     public static void main(String[] args) {
-        
-    
-    Scanner sc = new Scanner(System.in);
-        System.out.println("Enter the length of array :");
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the length of an Array :");
         int n = sc.nextInt();
-        int [] a= new int[n];
-        for (int i = 0; i < a.length; i++) {
-            a[i]=sc.nextInt();
+        int[] arr = new int[n];
+        System.out.println("Enter the elements in the Array :");
+        for(int i=0;i<arr.length;i++){
+            arr[i]=sc.nextInt();
         }
-        reverse(a);
-        for (int i = 0; i < a.length; i++) {
-            System.out.print(a[i]+" ");
-        }
+        reverse(arr);
+        System.out.println("Reversed Array : "+ Arrays.toString(arr));
     }
-    static void reverse(int[]a){
+
+    static void reverse(int []arr){
         int start=0;
-        int end=a.length-1;
+        int end=arr.length-1;
         while(start<end){
-            swap(a,start,end);
-            start++;
+            swap(arr, start, end);
             end--;
+            start++;
         }
     }
-    static void swap(int[]a ,int index1,int index2){
-            int temp=a[index1];
-            a[index1]=a[index2];
-            a[index2]=temp;
+    static void swap(int []arr, int index1, int index2){
+        int temp = arr[index1];
+        arr[index1] = arr[index2];
+        arr[index2] = temp;
     }
+    
 }
