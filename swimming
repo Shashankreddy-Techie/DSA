@@ -1,0 +1,73 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+class Swimmer {
+    private String name;
+    private double time; // time in seconds
+
+    public Swimmer(String name, double time) {
+        this.name = name;
+        this.time = time;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getTime() {
+        return time;
+    }
+}
+
+public class SwimmingCompetition {
+    private List<Swimmer> swimmers;
+
+    public SwimmingCompetition() {
+        swimmers = new ArrayList<>();
+    }
+
+    public void addSwimmer(String name, double time) {
+        swimmers.add(new Swimmer(name, time));
+    }
+
+    public Swimmer getWinner() {
+        if (swimmers.isEmpty()) {
+            return null;
+        }
+        Swimmer winner = swimmers.get(0);
+        for (Swimmer swimmer : swimmers) {
+            if (swimmer.getTime() < winner.getTime()) {
+                winner = swimmer;
+            }
+        }
+        return winner;
+    }
+
+    public static void main(String[] args) {
+        SwimmingCompetition competition = new SwimmingCompetition();
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter the number of swimmers:");
+        int numberOfSwimmers = scanner.nextInt();
+        scanner.nextLine(); // Consume newline
+
+        for (int i = 0; i < numberOfSwimmers; i++) {
+            System.out.println("Enter the name of swimmer " + (i + 1) + ":");
+            String name = scanner.nextLine();
+            System.out.println("Enter the time (in seconds) for swimmer " + name + ":");
+            double time = scanner.nextDouble();
+            scanner.nextLine(); // Consume newline
+            competition.addSwimmer(name, time);
+        }
+
+        Swimmer winner = competition.getWinner();
+        if (winner != null) {
+            System.out.println("The winner is " + winner.getName() + " with a time of " + winner.getTime() + " seconds.");
+        } else {
+            System.out.println("No swimmers in the competition.");
+        }
+
+        scanner.close();
+    }
+}
